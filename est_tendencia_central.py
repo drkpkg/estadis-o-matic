@@ -1,4 +1,5 @@
 import math
+from itertools import groupby
 
 class TendenciaCentralNoAgrupada:
     def __init__(self, datos):
@@ -7,7 +8,10 @@ class TendenciaCentralNoAgrupada:
         self.longitud = len(self.datos)
 
     def media(self):
-        return self.datos/self.longitud
+        m = 0
+        for k in self.datos:
+            m = m + k
+        return m/self.longitud
 
     def mediana(self):
         media = int(self.longitud/2)
@@ -44,24 +48,36 @@ class TendenciaCentralNoAgrupada:
         return percentil
 
     def moda(self):
-        pass
+        m = [len(list(group)) for key, group in groupby(self.datos)]
+        data = []
+        for i in m:
+            if i > 1:
+                data.append(i)
+        return data
 
     def media_geometrica(self):
-        pass
+        g = 1
+        for k in self.datos:
+            g = g * k
+        return math.pow(g,1/self.longitud)
 
     def media_armonica(self):
-        pass
+        armonica = 0
+        for k in self.datos:
+            armonica = armonica + (1/k)
+
+        return (self.longitud/armonica)
 
     """Metodos privados"""
 
     def __ncil_par(self, nciles, cantidad):
         for i in range(cantidad-1):
-            k = math.ceil((i * self.longitud) / cantidad) + 1
+            k = math.trunc((i * self.longitud) / cantidad) - 1
             nciles.append((self.datos[k] + self.datos[k + 1]) / 2)
 
     def __ncil_impar(self, nciles, cantidad):
         for i in range(cantidad-1):
-            k = math.ceil((i * self.longitud) / cantidad) + 1
+            k = math.trunc((i * self.longitud) / cantidad) - 1
             nciles.append(self.datos[k])
 
 
@@ -73,10 +89,17 @@ class TendenciaCentralAgrupada:
         self.amplitud = amplitud
         self.frecuencia_acumulada = []
         self.marca_de_clase = []
+        self.y = []
+        self.yf = []
+        self.y2 = []
+        self.y2f = []
 
         self.__obtener_total()
         self.__obtener_marcas_de_clases()
         self.__obtener_frecuencia_acumulada()
+        self.__obtener_y()
+        self.__obtener_yf()
+        self.__obtener_y2()
 
     def media(self):
         total = 0
@@ -133,27 +156,56 @@ class TendenciaCentralAgrupada:
         for k in self.intervalos:
             self.marca_de_clase.append((k[0]+k[1])/2)
 
-"""t = TendenciaCentralNoAgrupada([2, 3, 4, 4, 5, 5, 5, 6, 6])
-v = TendenciaCentralNoAgrupada([7, 8, 9, 10, 11, 12])
-c = TendenciaCentralNoAgrupada([2, 5, 3, 6, 7, 4, 9])
-print(t.mediana())
-print(v.mediana())
-print(c.datos)
-print(c.cuartil())
-"""
+    def __obtener_y(self):
+        for k in self.intervalos:
+            self.y.append((k[0] + k[1])/2)
 
-cpar = TendenciaCentralNoAgrupada([2, 5, 3, 4, 6, 7, 1, 9])
+    def __obtener_yf(self):
+        i = 0
+        for k in self.y:
+            self.yf.append(float(self.y[i])*k)
+            i += 1
+
+    def __obtener_y2(self):
+        for k in self.y:
+            self.y2.append(k*k)
+
+    def __obtener_y2f(self):
+        i = 0
+        for k in self.y2:
+            self.y2f.append(k * float(self.y[i]))
+            i += 1
+
+
+t = TendenciaCentralNoAgrupada([2, 3, 4, 4, 5, 5, 5, 6, 6])
+#v = TendenciaCentralNoAgrupada([7, 8, 9, 10, 11, 12])
+#c = TendenciaCentralNoAgrupada([2, 5, 3, 6, 7, 4, 9])
+print(t.media())
+print(t.mediana())
+print(t.media_geometrica())
+print(t.media_armonica())
+print(t.moda())
+
+#print(v.mediana())
+#print(c.datos)
+#print(c.cuartil())
+
+"""cpar = TendenciaCentralNoAgrupada([2, 5, 3, 4, 6, 7, 1, 9])
 print(cpar.datos)
 print(cpar.cuartil())
 print(cpar.decil())
 print(cpar.percentil())
+"""
 
-"""k = TendenciaCentralAgrupada([[0,10],[10,20],[20,30],[30,40],[40,50]],
-                             [3,6,7,12,3], 10)
+"""k = TendenciaCentralAgrupada([[2,8],[8,14],[14,20],[20,26],[26,32]],
+                             [8,12,22,18,10], 6)
 print(k.intervalos)
 print(k.frecuencia)
 print(k.frecuencia_acumulada)
 print(k.marca_de_clase)
-print(k.media())
-print(k.mediana())
-print(k.moda())"""
+#print(k.media())
+#print(k.mediana())
+#print(k.moda())
+print(k.y)
+print(k.yf)
+print(k.y2)"""
