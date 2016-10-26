@@ -1,1 +1,6 @@
-.idea
+node_modules
+dist
+releases
+bower_components
+.editorconfig
+.idea/
