@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Estadis O matic</title>
+{% block css %}
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/bootstrap.css') }}">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/tether.css') }}">
+{% endblock %}
+{% block js %}
+	<script src="{{ url_for('static', filename='javascripts/jquery-3.1.1.js') }}"></script>
+	<script src="{{ url_for('static', filename='javascripts/tether.js') }}"></script>
+	<script src="{{ url_for('static', filename='javascripts/bootstrap.js') }}"></script>
+{% endblock %}
+{% block font %}{% endblock %}
+<div class=page>
+  {% block body %}{% endblock %}
+</div>

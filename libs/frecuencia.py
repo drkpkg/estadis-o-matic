@@ -4,8 +4,8 @@ class Frecuencia:
     def __init__(self, datos):
         self.datos = datos
         self.longituid_datos = len(self.datos)
-        self.dato_menor = data[0]
-        self.dato_mayor = data[self.longituid_datos - 1]
+        self.dato_menor = datos[0]
+        self.dato_mayor = datos[self.longituid_datos - 1]
         self.recorrido =self.dato_mayor - self.dato_menor
         self.intervalo = self.sturges(self.recorrido)
         self.ancho_intervalo = self.obtener_ancho_intervalo(self.recorrido, self.intervalo)
@@ -23,7 +23,7 @@ class Frecuencia:
 
     def sturges(self, recorrido):
         result = 1+(3.332 * math.log(recorrido,10))
-        if math.trunc(result)%2==0:
+        if math.trunc(result) % 2 == 0:
             return round(result)
         else:
             return math.trunc(result)
@@ -68,10 +68,10 @@ class Frecuencia:
             self.frecuencia_relativa_absoluta = self.frecuencia_relativa_absoluta + i['frecuencia relativa']
             i['frecuencia relativa acummulada'] = round(self.frecuencia_relativa_absoluta,3)
 
-data = [36, 30, 47, 60, 32, 35, 40, 50, 54, 35, 45, 52, 48, 58, 60, 38, 32, 35, 56, 48, 30, 55, 49, 39, 58, 50, 65, 35, 56, 47, 37, 56, 58, 50, 47, 58, 55, 39, 58, 45]
-data.sort()
-frecuencia = Frecuencia(data)
-frecuencia.crear_tabla()
-
-for i in frecuencia.tabla:
-    print(i)
+# data = [36, 30, 47, 60, 32, 35, 40, 50, 54, 35, 45, 52, 48, 58, 60, 38, 32, 35, 56, 48, 30, 55, 49, 39, 58, 50, 65, 35, 56, 47, 37, 56, 58, 50, 47, 58, 55, 39, 58, 45]
+# data.sort()
+# frecuencia = Frecuencia(data)
+# frecuencia.crear_tabla()
+#
+# for i in frecuencia.tabla:
+#     print(i)

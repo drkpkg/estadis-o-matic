@@ -177,14 +177,14 @@ class TendenciaCentralAgrupada:
             i += 1
 
 
-t = TendenciaCentralNoAgrupada([2, 3, 4, 4, 5, 5, 5, 6, 6])
-#v = TendenciaCentralNoAgrupada([7, 8, 9, 10, 11, 12])
-#c = TendenciaCentralNoAgrupada([2, 5, 3, 6, 7, 4, 9])
-print(t.media())
-print(t.mediana())
-print(t.media_geometrica())
-print(t.media_armonica())
-print(t.moda())
+# t = TendenciaCentralNoAgrupada([2, 3, 4, 4, 5, 5, 5, 6, 6])
+# #v = TendenciaCentralNoAgrupada([7, 8, 9, 10, 11, 12])
+# #c = TendenciaCentralNoAgrupada([2, 5, 3, 6, 7, 4, 9])
+# print(t.media())
+# print(t.mediana())
+# print(t.media_geometrica())
+# print(t.media_armonica())
+# print(t.moda())
 
 #print(v.mediana())
 #print(c.datos)
