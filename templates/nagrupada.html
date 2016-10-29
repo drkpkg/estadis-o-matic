@@ -1,24 +1,30 @@
 {% extends "app.html" %}
 {% block body %}
 	<div class="column">
-		<div class="col-md-4">
-				<div class="form-group">
-					<label for="data-numbers">Datos</label>
-					<input id="data-numbers" type=text size=30 name=data placeholder="1,2,3,4..." class="form-control">
-				</div>
-				<a class="btn btn-success" id="submit-nag">Cargar datos</a>
+	    <div class="col-md-4">
+			<div class="form-group">
+				<label for="data-numbers">Datos</label>
+				<input id="data-numbers" type=text size=30 name=data placeholder="1,2,3,4..." class="form-control">
+			</div>
+			<a class="btn btn-success" id="submit-nag">Cargar datos</a>
+	    </div>
+    </div>
 
-		</div>
-	</div>
+    <div class="column">
+        <div class="col-md-4">
+            <div id="tc" class="form-group"></div>
+        </div>
+    </div>
+
 	<div class="column">
-		<div class="col-md-6">
-			<table id="tabled" class="celled table">
+		<div class="col-md-4">
+			<table id="tabled" class="table table-stripped">
 			<thead>
 			<tr>
-				<td>Intervalo</td>
-				<td>Marca de clase</td>
-				<td>Frecuencia relativa</td>
-				<td>Frecuencia relativa acumulada</td>
+				<td>A - B</td>
+				<td>(A + B)/2</td>
+				<td>f(x)</td>
+				<td>F(x)</td>
 			</tr>
 			</thead>
 			<tbody id="tabledbody">
